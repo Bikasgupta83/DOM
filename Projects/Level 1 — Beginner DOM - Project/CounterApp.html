@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+</head>
+
+<body>
+    <!-- Features
+            Increase counter
+            Decrease counter
+            Reset counter
+            Display current count -->
+
+    <h1 style="display: flex; justify-content: center; text-align: center; gap: 10px;">Count : <span
+            id="counter">0</span></h1>
+    <div style="display: flex; justify-content: center; text-align: center; gap: 10px;">
+        <button>Increase counter</button>
+        <button>Decrease counter</button>
+        <button>Reset counter</button>
+    </div>
+
+    <script>
+        let buttons = document.querySelectorAll("button")
+        let counter = document.querySelector("#counter");
+
+        let increaseBtn = buttons[0];
+        let descreaseBtn = buttons[1];
+        let resetBtn = buttons[2];
+        let count = 0;
+
+        increaseBtn.addEventListener("click", () => {
+            count++;
+            counter.textContent = count;
+            console.log(count)
+        })
+
+        descreaseBtn.addEventListener("click", () => {
+            if (count > 0) {
+                count--;
+                counter.textContent = count;
+                console.log(count);
+            }
+        })
+
+        resetBtn.addEventListener('click',()=>{
+            count = 0;
+            counter.textContent = count;
+        })
+    </script>
+</body>
+
+</html>

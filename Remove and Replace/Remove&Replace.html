@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <p id="text">Hello</p>
+    </div>
+
+    <script>
+        let text = document.querySelector("#text");
+        let container = document.querySelector(".container");
+        let p = document.createElement('p');
+
+        p.innerText = "New Paragraph";
+
+        // remove() - deletes the selected element itself from the DOM.
+        // text.remove();
+
+        //removeChild() - is used by the parent to remove one of its children.
+        // container.removeChild(text);
+
+        //replaceWith()
+        // text.replaceWith(p);
+
+        //replaceChild()
+        container.replaceChild(p, text);
+    </script>
+</body>
+
+</html>

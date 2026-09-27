@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+</head>
+<body>
+    <div class="digital-container">
+        <h1>Digital Clock</h1>
+        <div id="digital-clock" class="clock">00:00:00</div>
+    </div>
+
+    <script>
+        const updateClock = () =>{
+            let now = new Date();
+
+            let hours = now.getHours();
+            let minute = now.getMinutes();
+            let second = now.getSeconds();
+
+            hours = String(hours).padStart(2,"0")
+            minute = String(minute).padStart(2,"0")
+            second = String(second).padStart(2,"0")
+
+            let timeString = `${hours}:${minute}:${second}`;
+
+
+            document.querySelector("#digital-clock").textContent = timeString;
+
+            console.log(`Hours: ${hours}, Minutes: ${minute}, Second: ${minute}`)
+        }
+
+        updateClock();
+
+        setInterval(updateClock,1000);
+    </script>
+</body>
+</html>

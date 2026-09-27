@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Events Practice</title>
+</head>
+
+<body>
+
+    <h2>DOM Events Practice</h2>
+
+    <!-- Keyboard -->
+    <input
+        type="text"
+        id="keyboardInput"
+        placeholder="Type something..."
+    >
+
+    <br><br>
+
+    <!-- Mouse -->
+    <button id="btn">Click Me</button>
+
+    <br><br>
+
+    <div
+        class="box"
+        style="
+            width: 150px;
+            height: 100px;
+            border: 1px solid #000;
+        "
+    >
+        Hover / Click Me
+    </div>
+
+    <br>
+
+    <!-- Input & Change -->
+    <input
+        type="text"
+        id="textInput"
+        placeholder="Type your name"
+    >
+
+    <p id="output"></p>
+
+    <br>
+
+    <select id="city">
+        <option value="">Select City</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Pune">Pune</option>
+        <option value="Delhi">Delhi</option>
+    </select>
+
+
+    <script>
+
+        // ==========================================
+        // KEYBOARD EVENTS
+        // ==========================================
+
+        const keyboardInput =
+            document.querySelector("#keyboardInput");
+
+
+        // keydown
+        // Fires when a key is pressed
+
+        // keyboardInput.addEventListener("keydown", (e) => {
+        //     console.log("Key Down:", e.key);
+        // });
+
+
+        // keyup
+        // Fires when a key is released
+
+        // keyboardInput.addEventListener("keyup", (e) => {
+        //     console.log("Key Up:", e.key);
+        // });
+
+
+        // Keyboard Shortcut
+
+        // document.addEventListener("keydown", (e) => {
+
+        //     if (e.key === "Enter") {
+        //         console.log("Enter Pressed");
+        //     }
+
+        //     if (e.ctrlKey && e.key === "s") {
+
+        //         e.preventDefault();
+
+        //         console.log("Save Shortcut");
+        //     }
+
+        // });
+
+
+        // Keyboard modifier keys
+
+        // e.ctrlKey
+        // e.shiftKey
+        // e.altKey
+        // e.metaKey
+
+
+
+        // ==========================================
+        // MOUSE EVENTS
+        // ==========================================
+
+        const btn = document.querySelector("#btn");
+        const box = document.querySelector(".box");
+
+
+        // click
+
+        // btn.addEventListener("click", () => {
+        //     console.log("Clicked");
+        // });
+
+
+        // double click
+
+        // btn.addEventListener("dblclick", () => {
+        //     console.log("Double Click");
+        // });
+
+
+        // mousedown
+
+        // btn.addEventListener("mousedown", () => {
+        //     console.log("Mouse Button Pressed");
+        // });
+
+
+        // mouseup
+
+        // btn.addEventListener("mouseup", () => {
+        //     console.log("Mouse Button Released");
+        // });
+
+
+        // mouseover
+
+        // box.addEventListener("mouseover", () => {
+        //     console.log("Mouse Over");
+        // });
+
+
+        // mouseenter
+
+        // box.addEventListener("mouseenter", () => {
+        //     console.log("Mouse Entered");
+        // });
+
+
+        // mouseleave
+
+        // box.addEventListener("mouseleave", () => {
+        //     console.log("Mouse Left");
+        // });
+
+
+
+        // ==========================================
+        // POINTER EVENTS
+        // ==========================================
+
+        // Pointer events work with:
+        // Mouse
+        // Touch
+        // Pen / Stylus
+
+
+        // pointerdown
+
+        // box.addEventListener("pointerdown", () => {
+        //     console.log("Pointer Down");
+        // });
+
+
+        // pointerup
+
+        // box.addEventListener("pointerup", () => {
+        //     console.log("Pointer Up");
+        // });
+
+
+        // pointermove
+
+        // box.addEventListener("pointermove", () => {
+        //     console.log("Pointer Moving");
+        // });
+
+
+        // pointerenter
+
+        // box.addEventListener("pointerenter", () => {
+        //     console.log("Pointer Enter");
+        // });
+
+
+        // pointerleave
+
+        // box.addEventListener("pointerleave", () => {
+        //     console.log("Pointer Leave");
+        // });
+
+
+
+        // ==========================================
+        // INPUT EVENT
+        // ==========================================
+
+        const textInput =
+            document.querySelector("#textInput");
+
+        const output =
+            document.querySelector("#output");
+
+
+        // input fires whenever the value changes
+
+        // textInput.addEventListener("input", (e) => {
+
+        //     console.log(e.target.value);
+
+        //     output.textContent = e.target.value;
+        // });
+
+
+
+        // ==========================================
+        // CHANGE EVENT
+        // ==========================================
+
+        const city =
+            document.querySelector("#city");
+
+
+        // change fires when the value is committed
+
+        // city.addEventListener("change", (e) => {
+
+        //     console.log("Selected City:", e.target.value);
+
+        // });
+
+
+
+        // change can also be used with input
+
+        // textInput.addEventListener("change", (e) => {
+        //     console.log("Changed:", e.target.value);
+        // });
+
+
+
+        // ==========================================
+        // DOMContentLoaded
+        // ==========================================
+
+        // Fires when HTML has been completely parsed
+        // and the DOM is ready.
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                console.log("DOM is Ready");
+
+            }
+        );
+
+
+
+        // ==========================================
+        // LOAD
+        // ==========================================
+
+        // Fires after the page and its dependent
+        // resources have finished loading.
+
+        window.addEventListener("load", () => {
+
+            console.log("Everything is Loaded");
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

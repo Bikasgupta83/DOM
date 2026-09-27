@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //assigning name=value in cookie
+        document.cookie = "username=Bikas";
+        console.log(document.cookie)
+
+        //assigning specific cookie age
+        document.cookie = "mobile=8356050540; max-age=5"
+
+        console.log(document.cookie);
+
+
+        // to verify max-age
+        setTimeout(() => {
+            console.log(document.cookie);
+        }, 6000);
+
+        document.cookie = "username=Rahul; max-age=5";
+
+        console.log(document.cookie)
+        setTimeout(()=>{
+            console.log(document.cookie)
+        },6000)
+    </script>
+</body>
+
+</html>

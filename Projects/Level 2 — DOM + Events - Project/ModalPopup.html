@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        /* Fixed buttons positioning at the top */
+        button {
+            position: fixed;
+            top: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #1a2a6c;
+            border: 2px solid #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #b21f1f;
+            transform: translateY(-2px);
+        }
+
+        /* Specific positions for each button */
+        body>button:nth-of-type(1) {
+            left: 20px;
+            /* Open Model button */
+        }
+
+        body>button:nth-of-type(2) {
+            left: 150px;
+            /* Close Model button */
+        }
+
+        .scene-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .island {
+            position: absolute;
+            bottom: 80px;
+            left: 100px;
+            width: 200px;
+            height: 60px;
+            background: #4d7c0f;
+            border-radius: 50%;
+            box-shadow: inset 0 -10px 0 #3f6212;
+            animation: float 4s ease-in-out infinite alternate;
+        }
+
+        .island::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 30px;
+            width: 140px;
+            height: 50px;
+            background: #78350f;
+            border-radius: 0 0 70px 70px;
+            z-index: -1;
+        }
+
+        .balloon {
+            position: absolute;
+            top: 60px;
+            left: 150px;
+            width: 80px;
+            height: 95px;
+            background: repeating-linear-gradient(90deg,
+                    #e11d48,
+                    #e11d48 20px,
+                    #ffffff 20px,
+                    #ffffff 40px);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: float 3s ease-in-out infinite alternate-reverse, drift 12s linear infinite;
+            box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .basket {
+            position: absolute;
+            bottom: -30px;
+            left: 27px;
+            width: 26px;
+            height: 20px;
+            background: #b45309;
+            border-radius: 4px;
+        }
+
+        .basket::before,
+        .basket::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 2px;
+            height: 12px;
+            background: #ffffff;
+        }
+
+        .basket::before {
+            left: 4px;
+        }
+
+        .basket::after {
+            right: 4px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes drift {
+            0% {
+                left: -100px;
+            }
+
+            100% {
+                left: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let body = document.querySelector("body");
+
+
+        let openModel = document.createElement("button")
+        let closeModel = document.createElement("button")
+        let container = document.createElement("div");
+
+        let modelData = `
+                <div class="scene-container">
+                    <div class="balloon">
+                    <div class="basket"></div>
+                    </div>
+                    
+                    <div class="island"></div>
+                </div>            
+        `;
+
+        container.innerHTML = modelData;
+
+        openModel.innerText = "Open Model";
+        closeModel.innerText = "Close Model";
+
+        container.style.display = "none";
+
+
+        openModel.addEventListener("click", () => {
+            container.style.display = "block";
+        })
+
+        closeModel.addEventListener("click", () => {
+            container.style.display = "none";
+        })
+
+
+        body.append(container, openModel, closeModel);
+    </script>
+</body>
+
+</html>

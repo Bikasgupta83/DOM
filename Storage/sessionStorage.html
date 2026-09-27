@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Storage</title>
+</head>
+
+<body>
+
+    <h2>Session Storage Practice</h2>
+
+    <button id="save">Save Data</button>
+    <button id="get">Get Data</button>
+    <button id="remove">Remove Name</button>
+    <button id="clear">Clear All</button>
+
+    <p id="output"></p>
+
+    <script>
+
+        const save = document.querySelector("#save");
+        const get = document.querySelector("#get");
+        const remove = document.querySelector("#remove");
+        const clear = document.querySelector("#clear");
+        const output = document.querySelector("#output");
+
+
+        // ==========================================
+        // setItem()
+        // ==========================================
+
+        save.addEventListener("click", () => {
+
+            sessionStorage.setItem("name", "Bikas");
+            sessionStorage.setItem("city", "Mumbai");
+
+            output.innerText = "Data Saved";
+
+        });
+
+
+        // ==========================================
+        // getItem()
+        // ==========================================
+
+        get.addEventListener("click", () => {
+
+            const name = sessionStorage.getItem("name");
+            const city = sessionStorage.getItem("city");
+
+            console.log("Name:", name);
+            console.log("City:", city);
+
+            output.innerText = `Name: ${name}, City: ${city}`;
+
+        });
+
+
+        // ==========================================
+        // removeItem()
+        // ==========================================
+
+        remove.addEventListener("click", () => {
+
+            sessionStorage.removeItem("name");
+
+            output.innerText = "Name Removed";
+
+        });
+
+
+        // ==========================================
+        // clear()
+        // ==========================================
+
+        clear.addEventListener("click", () => {
+
+            sessionStorage.clear();
+
+            output.innerText = "All Session Storage Cleared";
+
+        });
+
+
+        // ==========================================
+        // length
+        // ==========================================
+
+        console.log(
+            "Number of stored items:",
+            sessionStorage.length
+        );
+
+    </script>
+
+</body>
+
+</html>

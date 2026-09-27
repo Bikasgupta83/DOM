@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple-Choice Quiz Application</title>
+    <style>
+        .projectTitle {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background-color: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            font-family: Arial, sans-serif;
+        }
+
+        .leftContainer {
+            border: 1px solid #000;
+            width: 300px;
+            height: 420px;
+            border-radius: 10px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #fcfcfc;
+        }
+
+        .rightContainer {
+            border: 1px solid #000;
+            width: 100%;
+            height: 420px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .optionsDisplayContainer {
+            border: 1px solid #000;
+            width: 90%;
+            height: 300px;
+            padding: 20px;
+            margin: 20px auto 0 auto;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: #fafafa;
+            overflow-y: auto;
+        }
+
+        .buttonContainer {
+            width: 90%;
+            margin: 15px auto 20px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nextBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border: 1px solid #000;
+            border-left: none;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .prevBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            border: 1px solid #000;
+            border-right: none;
+            background-color: #2196f3;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .nextBtn:disabled,
+        .prevBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .options-items {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .options-items input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .options-items label {
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .chip {
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            background-color: #eee;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .active {
+            border-color: #2196f3;
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .statusBox {
+            margin-top: auto;
+            padding: 12px;
+            border: 1px dashed #aaa;
+            border-radius: 6px;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        .answered {
+            background-color: #e8f5e9;
+            border-color: #81c784;
+            color: #2e7d32;
+        }
+
+        .resultContainer {
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .scoreCard {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .restartBtn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 20px;
+            border: 1px solid #000;
+            background-color: #2196f3;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const questions = [
+            {
+                question: "What is HTML used for?",
+                options: [
+                    "Styling web pages",
+                    "Creating the structure of web pages",
+                    "Database management",
+                    "Server hosting"
+                ],
+                answer: "Creating the structure of web pages"
+            },
+            {
+                question: "What is CSS used for?",
+                options: [
+                    "Adding logic",
+                    "Creating databases",
+                    "Styling web pages",
+                    "Creating APIs"
+                ],
+                answer: "Styling web pages"
+            },
+            {
+                question: "What does DOM stand for?",
+                options: [
+                    "Document Object Model",
+                    "Data Object Method",
+                    "Document Oriented Model",
+                    "Data Object Model"
+                ],
+                answer: "Document Object Model"
+            },
+            {
+                question: "Which method selects the first element matching a CSS selector?",
+                options: [
+                    "getElement()",
+                    "querySelector()",
+                    "selectElement()",
+                    "findElement()"
+                ],
+                answer: "querySelector()"
+            },
+            {
+                question: "Which method is used to create a new HTML element?",
+                options: [
+                    "createElement()",
+                    "newElement()",
+                    "createHTML()",
+                    "addElement()"
+                ],
+                answer: "createElement()"
+            },
+            {
+                question: "Which method adds content at the end of an element?",
+                options: [
+                    "prepend()",
+                    "before()",
+                    "append()",
+                    "replace()"
+                ],
+                answer: "append()"
+            },
+            {
+                question: "Which method adds content at the beginning of an element?",
+                options: [
+                    "append()",
+                    "prepend()",
+                    "before()",
+                    "after()"
+                ],
+                answer: "prepend()"
+            },
+            {
+                question: "Which method removes an element from the DOM?",
+                options: [
+                    "delete()",
+                    "remove()",
+                    "deleteElement()",
+                    "removeElement()"
+                ],
+                answer: "remove()"
+            },
+            {
+                question: "Which method is used to attach an event handler to an element?",
+                options: [
+                    "addEvent()",
+                    "addEventListener()",
+                    "eventHandler()",
+                    "attachEvent()"
+                ],
+                answer: "addEventListener()"
+            },
+            {
+                question: "Which property gives the element that triggered an event?",
+                options: [
+                    "currentTarget",
+                    "eventTarget",
+                    "target",
+                    "source"
+                ],
+                answer: "target"
+            },
+            {
+                question: "Which method prevents the default browser behavior?",
+                options: [
+                    "stopPropagation()",
+                    "preventDefault()",
+                    "preventEvent()",
+                    "stopDefault()"
+                ],
+                answer: "preventDefault()"
+            },
+            {
+                question: "Which event fires continuously while the user types in an input?",
+                options: [
+                    "change",
+                    "input",
+                    "keydown",
+                    "submit"
+                ],
+                answer: "input"
+            },
+            {
+                question: "Which storage keeps data even after the browser is closed?",
+                options: [
+                    "sessionStorage",
+                    "localStorage",
+                    "temporaryStorage",
+                    "browserStorage"
+                ],
+                answer: "localStorage"
+            },
+            {
+                question: "Which method converts a JavaScript object into a JSON string?",
+                options: [
+                    "JSON.parse()",
+                    "JSON.convert()",
+                    "JSON.stringify()",
+                    "JSON.object()"
+                ],
+                answer: "JSON.stringify()"
+            },
+            {
+                question: "Which method converts a JSON string into a JavaScript object?",
+                options: [
+                    "JSON.parse()",
+                    "JSON.stringify()",
+                    "JSON.convert()",
+                    "JSON.object()"
+                ],
+                answer: "JSON.parse()"
+            }
+        ];
+
+        let projectTitle = document.createElement("h1");
+        let container = document.createElement("div");
+        let leftContainer = document.createElement("div");
+        let rightContainer = document.createElement("div");
+        let optionsDisplayContainer = document.createElement("div");
+        let buttonContainer = document.createElement("div");
+        let nextBtn = document.createElement("button");
+        let prevBtn = document.createElement("button");
+
+        projectTitle.innerText = "Multiple-Choice Quiz Application";
+
+        // Assign innerText to both buttons
+        prevBtn.innerText = "Previous";
+        nextBtn.innerText = "Next";
+
+        projectTitle.classList.add("projectTitle");
+        container.classList.add("container");
+        leftContainer.classList.add("leftContainer");
+        rightContainer.classList.add("rightContainer");
+        optionsDisplayContainer.classList.add("optionsDisplayContainer");
+        buttonContainer.classList.add("buttonContainer");
+        nextBtn.classList.add("nextBtn");
+        prevBtn.classList.add("prevBtn");
+
+        let currentQuestionIndex = 0;
+        let selectedAnswers = new Array(questions.length).fill(null);
+
+        function updateButtonStates() {
+            prevBtn.disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerText = "Submit";
+            } else {
+                nextBtn.innerText = "Next";
+            }
+        }
+
+        function optionsFun(index) {
+            optionsDisplayContainer.innerHTML = "";
+
+            let currentQ = questions[index];
+
+            // Question Heading
+            let questionHeading = document.createElement("h3");
+            questionHeading.classList.add("questionHeading");
+            questionHeading.innerText = `Q.${index + 1}: ${currentQ.question}`;
+            optionsDisplayContainer.appendChild(questionHeading);
+
+            // Options List
+            currentQ.options.forEach((option, optIndex) => {
+                let optionsWrapper = document.createElement("div");
+                optionsWrapper.classList.add("options-items");
+
+                let radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `question_${index}`;
+                radio.id = `opt_${index}_${optIndex}`;
+                radio.value = option;
+
+                if (selectedAnswers[index] === option) {
+                    radio.checked = true;
+                }
+
+                radio.addEventListener("change", () => {
+                    selectedAnswers[index] = option;
+                    leftPanel();
+                });
+
+                let label = document.createElement("label");
+                label.htmlFor = `opt_${index}_${optIndex}`;
+                label.innerText = option;
+
+                optionsWrapper.appendChild(radio);
+                optionsWrapper.appendChild(label);
+                optionsDisplayContainer.appendChild(optionsWrapper);
+            });
+
+            updateButtonStates();
+        }
+
+        function leftPanel() {
+            leftContainer.innerHTML = "";
+
+            let sidebarTitle = document.createElement("h3");
+            sidebarTitle.style.marginTop = "0";
+            sidebarTitle.innerText = "Questions Overview";
+            leftContainer.appendChild(sidebarTitle);
+
+            let grid = document.createElement("div");
+            grid.classList.add("grid");
+
+            questions.forEach((_, questionIdx) => {
+                let chip = document.createElement("div");
+                chip.classList.add("chip");
+                chip.innerText = questionIdx + 1;
+
+                if (currentQuestionIndex == questionIdx) {
+                    chip.classList.add("active");
+                }
+
+                if (selectedAnswers[questionIdx] !== null) {
+                    chip.classList.add("answered");
+                }
+
+                chip.addEventListener("click", () => {
+                    currentQuestionIndex = questionIdx;
+                    optionsFun(currentQuestionIndex);
+                    leftPanel();
+                });
+
+                grid.appendChild(chip);
+            });
+            leftContainer.appendChild(grid);
+
+            // Status Box
+            let statusBox = document.createElement("div");
+            statusBox.classList.add("statusBox");
+            let answerCount = selectedAnswers.filter((a) => a !== null).length;
+
+            statusBox.innerHTML = `
+                <strong>Status:</strong><br/>
+                Answered: ${answerCount} / ${questions.length}<br/>
+                Pending: ${questions.length - answerCount}
+            `;
+
+            leftContainer.appendChild(statusBox);
+        }
+
+        function renderResult() {
+            let correctAns = 0;
+            let wrongAns = 0;
+            let unaskedCount = 0;
+
+            for (let i = 0; i < questions.length; i++) {
+                if (selectedAnswers[i] === null) {
+                    unaskedCount++;
+                } else if (selectedAnswers[i] === questions[i].answer) {
+                    correctAns++;
+                } else {
+                    wrongAns++;
+                }
+            }
+
+            container.innerHTML = ""; // Clear quiz layout
+
+            let resultWrapper = document.createElement("div");
+            resultWrapper.classList.add("resultContainer");
+
+            let heading = document.createElement("h2");
+            heading.innerText = "Quiz Completed!";
+
+            let scoreCard = document.createElement("div");
+            scoreCard.classList.add("scoreCard");
+            scoreCard.innerHTML = `
+                <p><strong>Total Questions:</strong> ${questions.length}</p>
+                <p style="color: #2e7d32;"><strong>Correct Answers:</strong> ${correctAns}</p>
+                <p style="color: #d32f2f;"><strong>Wrong Answers:</strong> ${wrongAns}</p>
+                <p style="color: #f57c00;"><strong>Unanswered:</strong> ${unaskedCount}</p>
+                <p><strong>Score:</strong> ${((correctAns / questions.length) * 100).toFixed(1)}%</p>
+            `;
+
+            let restartBtn = document.createElement("button");
+            restartBtn.innerText = "Restart Quiz";
+            restartBtn.classList.add("restartBtn");
+
+            restartBtn.addEventListener("click", () => {
+                location.reload();
+            });
+
+            resultWrapper.append(heading, scoreCard, restartBtn);
+            container.appendChild(resultWrapper);
+        }
+
+        nextBtn.addEventListener("click", () => {
+            if (currentQuestionIndex === questions.length - 1) {
+                renderResult();
+            } else {
+                currentQuestionIndex++;
+                optionsFun(currentQuestionIndex);
+                leftPanel();
+            }
+
+            console.log(selectedAnswers)
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                optionsFun(currentQuestionIndex);
+                leftPanel();
+            }
+        });
+
+        // Initialize App
+        optionsFun(currentQuestionIndex);
+        leftPanel();
+
+        buttonContainer.append(prevBtn, nextBtn);
+        rightContainer.append(optionsDisplayContainer, buttonContainer);
+        container.append(leftContainer, rightContainer);
+        document.body.append(projectTitle, container);
+
+    </script>
+</body>
+
+</html>

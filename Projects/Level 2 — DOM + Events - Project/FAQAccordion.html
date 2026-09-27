@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        .fqaContainer {
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        h3 {
+            border: 1px solid #e2e8f0;
+            padding: 14px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            background-color: #f8fafc;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            user-select: none;
+        }
+
+        h3:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        span {
+            font-size: 0.75rem;
+            color: #64748b;
+            transition: transform 0.2s ease;
+        }
+
+        h3 > h4 {
+            width: 100%;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let body = document.querySelector("body");
+        let heading = document.createElement("h1");
+        let fqaContainer = document.createElement("div");
+
+        let FQA = {
+            "What is HTML?": "HTML (HyperText Markup Language) is used to create the structure and content of web pages.",
+            "What is CSS?": "CSS (Cascading Style Sheets) is used to style and design HTML elements, including colors, spacing, layouts, and fonts.",
+            "What is JavaScript?": "JavaScript is a programming language used to add logic, interactivity, and dynamic behavior to web pages.",
+            "What is the DOM?": "DOM (Document Object Model) is a programming interface that represents an HTML document as a tree of objects that JavaScript can access and modify.",
+            "What is an event in JavaScript?": "An event is an action or occurrence in the browser, such as a click, key press, mouse movement, or form submission.",
+            "What is addEventListener()?": "addEventListener() is used to attach an event handler to an element so that JavaScript can respond when an event occurs.",
+            "What is querySelector()?": "querySelector() selects the first HTML element that matches a CSS selector.",
+        }
+
+        heading.textContent = "FQA"
+        fqaContainer.classList.add("fqaContainer");
+
+        body.append(heading, fqaContainer)
+
+        for (let key in FQA) {
+            let h3 = document.createElement("h3");
+            let span = document.createElement("span");
+            let h4 = document.createElement("h4");
+
+            let value = FQA[key];
+
+            span.textContent = "▼";
+
+            h3.innerText = key;
+            h4.innerText = value;
+            h4.style.display = "none";
+
+            h3.append(span, h4);
+
+            fqaContainer.append(h3);
+
+            h3.addEventListener("click", () => {
+                if (h4.style.display === "none") {
+                    h4.style.display = "block";
+                    span.textContent = "▲";
+                    
+                } else {
+                    h4.style.display = "none";
+                    span.textContent = "▼";
+                }
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>

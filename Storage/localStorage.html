@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Local Storage</title>
+
+    <style>
+        body.dark-theme {
+            background-color: #181717;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Local Storage Practice</h2>
+
+    <!-- Form -->
+    <form id="form">
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+        >
+
+        <button type="submit">
+            Save Name
+        </button>
+    </form>
+
+    <br>
+
+    <button id="getName">
+        Get Name
+    </button>
+
+    <button id="removeName">
+        Remove Name
+    </button>
+
+    <button id="clearStorage">
+        Clear Storage
+    </button>
+
+    <p id="output"></p>
+
+
+    <script>
+
+        const form = document.querySelector("#form");
+        const input = document.querySelector("#name");
+
+        const getName = document.querySelector("#getName");
+        const removeName = document.querySelector("#removeName");
+        const clearStorage = document.querySelector("#clearStorage");
+
+        const output = document.querySelector("#output");
+
+
+        // ==========================================
+        // 1. setItem()
+        // ==========================================
+
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            const name = input.value;
+
+            localStorage.setItem("name", name);
+
+            output.innerText = "Name saved successfully";
+
+        });
+
+
+        // Store another value
+
+        localStorage.setItem("city", "Mumbai");
+
+
+        // ==========================================
+        // 2. getItem()
+        // ==========================================
+
+        getName.addEventListener("click", () => {
+
+            const name = localStorage.getItem("name");
+
+            console.log(name);
+
+            output.innerText = `Name: ${name}`;
+
+        });
+
+
+        // ==========================================
+        // 3. removeItem()
+        // ==========================================
+
+        removeName.addEventListener("click", () => {
+
+            localStorage.removeItem("name");
+
+            output.innerText = "Name removed";
+
+        });
+
+
+        // ==========================================
+        // 4. clear()
+        // ==========================================
+
+        clearStorage.addEventListener("click", () => {
+
+            localStorage.clear();
+
+            output.innerText = "All localStorage data cleared";
+
+        });
+
+
+        // ==========================================
+        // 5. key()
+        // ==========================================
+
+        console.log("First Key:", localStorage.key(0));
+
+        console.log("Second Key:", localStorage.key(1));
+
+
+        // ==========================================
+        // 6. length
+        // ==========================================
+
+        console.log(
+            "Total Items:",
+            localStorage.length
+        );
+
+
+        // ==========================================
+        // 7. Store Object
+        // ==========================================
+
+        const user = {
+            name: "Bikas",
+            age: 22
+        };
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+
+
+        // ==========================================
+        // 8. Get Object
+        // ==========================================
+
+        const userData = JSON.parse(
+            localStorage.getItem("user")
+        );
+
+        console.log(userData);
+
+        console.log(userData.age);
+
+
+        // ==========================================
+        // 9. Theme Example
+        // ==========================================
+
+        const mode = localStorage.getItem("theme");
+
+        if (mode === "dark") {
+
+            document.body.classList.add("dark-theme");
+
+        }
+
+
+        // To save the theme:
+
+        // localStorage.setItem("theme", "dark");
+
+
+    </script>
+
+</body>
+
+</html>

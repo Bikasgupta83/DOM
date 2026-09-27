@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">Hello</div>
+
+    <script>
+        let box = document.querySelector("#box");
+
+        box.style.color = "red";
+        box.style.backgroundColor = "black",
+        box.style.pedding = "20px";
+
+        let styles = getComputedStyle(box);
+        console.log(styles.backgroundColor);
+    </script>
+</body>
+</html>

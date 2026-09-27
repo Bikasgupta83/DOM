@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Fragment & DOM Performance</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .large {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>DocumentFragment</h2>
+
+    <ul id="list"></ul>
+
+
+    <h2>Reflow & Repaint</h2>
+
+    <div class="box" id="box">
+        Box
+    </div>
+
+
+    <h2>Layout Thrashing</h2>
+
+    <div class="box" id="layoutBox">
+        Layout Box
+    </div>
+
+
+    <script>
+
+        // ==========================================
+        // DOCUMENT FRAGMENT
+        // ==========================================
+
+        const list = document.querySelector("#list");
+
+
+        // ------------------------------------------
+        // Direct DOM Insertion
+        // ------------------------------------------
+
+        /*
+        for (let i = 1; i <= 10; i++) {
+
+            const li = document.createElement("li");
+
+            li.innerText = `Item ${i}`;
+
+            list.append(li);
+        }
+        */
+
+
+        // ------------------------------------------
+        // DocumentFragment
+        // ------------------------------------------
+
+        /*
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 1; i <= 10; i++) {
+
+            const li = document.createElement("li");
+
+            li.innerText = `Item ${i}`;
+
+            // Add element to Fragment
+            fragment.append(li);
+        }
+
+        // Insert Fragment into the real DOM once
+        list.append(fragment);
+        */
+
+
+        // ==========================================
+        // REFLOW
+        // ==========================================
+
+        const box = document.querySelector("#box");
+
+
+        // Changing width can affect layout
+
+        /*
+        box.style.width = "300px";
+        */
+
+
+        // Changing height can affect layout
+
+        /*
+        box.style.height = "200px";
+        */
+
+
+        // Adding a class can change layout
+
+        /*
+        box.classList.add("large");
+        */
+
+
+        // Adding an element can also affect layout
+
+        /*
+        const newElement = document.createElement("p");
+
+        newElement.innerText = "New Element";
+
+        box.after(newElement);
+        */
+
+
+        // ==========================================
+        // REPAINT
+        // ==========================================
+
+
+        // Changing visual appearance
+
+        /*
+        box.style.backgroundColor = "red";
+        */
+
+
+        // Changing text color
+
+        /*
+        box.style.color = "white";
+        */
+
+
+        // Changing border
+
+        /*
+        box.style.border = "5px solid black";
+        */
+
+
+        // ==========================================
+        // DOM READS
+        // ==========================================
+
+        const layoutBox = document.querySelector("#layoutBox");
+
+
+        // Reading layout information
+
+        /*
+        console.log(layoutBox.offsetWidth);
+
+        console.log(layoutBox.offsetHeight);
+        */
+
+
+        // Other layout-related reads
+
+        /*
+        console.log(layoutBox.offsetTop);
+
+        console.log(layoutBox.offsetLeft);
+        */
+
+
+        // getBoundingClientRect()
+
+        /*
+        console.log(
+            layoutBox.getBoundingClientRect()
+        );
+        */
+
+
+        // getComputedStyle()
+
+        /*
+        const styles = getComputedStyle(layoutBox);
+
+        console.log(styles.width);
+        console.log(styles.height);
+        */
+
+
+        // ==========================================
+        // LAYOUT THRASHING
+        // ==========================================
+
+        /*
+        // WRITE → READ → WRITE → READ
+
+        for (let i = 0; i < 100; i++) {
+
+            // DOM WRITE
+            layoutBox.style.width = `${100 + i}px`;
+
+            // DOM READ
+            console.log(layoutBox.offsetWidth);
+        }
+        */
+
+
+        // ==========================================
+        // BETTER APPROACH
+        // ==========================================
+
+        /*
+        // READS FIRST
+
+        const width = layoutBox.offsetWidth;
+        const height = layoutBox.offsetHeight;
+
+        console.log(width);
+        console.log(height);
+
+
+        // WRITES AFTER
+
+        layoutBox.style.width = "300px";
+        layoutBox.style.height = "200px";
+        */
+
+
+        // ==========================================
+        // READ → READ → READ
+        // WRITE → WRITE → WRITE
+        // ==========================================
+
+        /*
+        const currentWidth = layoutBox.offsetWidth;
+        const currentHeight = layoutBox.offsetHeight;
+        const currentTop = layoutBox.offsetTop;
+
+        console.log(currentWidth);
+        console.log(currentHeight);
+        console.log(currentTop);
+
+
+        layoutBox.style.width = "300px";
+        layoutBox.style.height = "200px";
+        layoutBox.style.backgroundColor = "lightgreen";
+        */
+
+
+    </script>
+
+</body>
+
+</html>

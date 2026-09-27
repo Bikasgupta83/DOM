@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>click</button>
+
+
+    <div class="container">
+        <button>Event</button>
+        <button>Click</button>
+    </div>
+
+    <br>
+    <br>
+
+    <a href="https://amf-menu.netlify.app">Visit</a>
+
+
+    <br>
+    <br>
+
+    <form action="">
+        <input type="text" name="" id="">
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <br><br>
+    <div id="parent"><button id="child">Click</button></div>
+
+    <script>
+        let btn = document.querySelector("button");
+        let container = document.querySelector('.container');
+        let a = document.querySelector('a');
+        let form = document.querySelector('form');
+        let parent = document.querySelector("#parent");
+        let child = document.querySelector('#child');
+        let input = document.querySelector('input');
+
+        btn.addEventListener('click', (event) => {
+            console.log(event.type);
+        })
+        btn.addEventListener('keydown', (event) => {
+            console.log(event.type);
+        })
+
+        container.addEventListener('click', (event) => {
+            console.log(event.target);
+            console.log(event.currentTarget);
+        })
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            console.log("Navigation Prevented");
+        })
+
+        // form.addEventListener('submit',(event)=>{
+        // event.preventDefault();
+
+        // console.log("Form handled by JS");
+
+        // window.open('https://amf-menu.netlify.app','_blank');
+
+        // console.log(event.target.input.value);
+        // })
+
+
+        parent.addEventListener('click', () => {
+            console.log("Parent")
+        })
+        child.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log("Child")
+        })
+
+
+        // input.addEventListener('input',(e)=>{
+        //     console.log(e.target.value)
+        // })
+
+
+        // form.addEventListener("keydown", (e) => {
+        //     if(e.key === "Enter"){
+        //         e.preventDefault();
+        //         console.log(e.target.value)
+        //     }
+        // });
+
+        document.addEventListener("keyup",(e)=>{
+            if(e.key == "w"){
+                e.preventDefault();
+                console.log(e.target.value);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

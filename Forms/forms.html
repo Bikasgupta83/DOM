@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Forms</title>
+</head>
+
+<body>
+
+    <h2>DOM Forms Practice</h2>
+
+    <form id="form">
+
+        <!-- Text Input -->
+        <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+        >
+        <br><br>
+
+        <!-- Email Input -->
+        <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+        >
+        <br><br>
+
+        <!-- Number Input -->
+        <input
+            type="number"
+            name="number"
+            id="number"
+            placeholder="Mobile Number"
+        >
+        <br><br>
+
+        <!-- Password -->
+        <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+        >
+        <br><br>
+
+        <!-- Select -->
+        <select name="city" id="city">
+            <option value="">Select City</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="pune">Pune</option>
+            <option value="delhi">Delhi</option>
+        </select>
+        <br><br>
+
+        <!-- Radio -->
+        <label>Gender:</label>
+
+        <input
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+        >
+        <label for="male">Male</label>
+
+        <input
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+        >
+        <label for="female">Female</label>
+
+        <br><br>
+
+        <!-- Checkbox -->
+        <input
+            type="checkbox"
+            name="terms"
+            id="terms"
+            value="accepted"
+        >
+        <label for="terms">
+            I accept the terms and conditions
+        </label>
+
+        <br><br>
+
+        <!-- Textarea -->
+        <textarea
+            name="message"
+            id="message"
+            placeholder="Enter your message"
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <p id="error"></p>
+
+    <script>
+
+        // ==========================================
+        // FORM ELEMENTS
+        // ==========================================
+
+        const form = document.querySelector("#form");
+
+        const name = document.querySelector("#name");
+        const email = document.querySelector("#email");
+        const number = document.querySelector("#number");
+        const password = document.querySelector("#password");
+
+        const city = document.querySelector("#city");
+
+        const terms = document.querySelector("#terms");
+
+        const message = document.querySelector("#message");
+
+        const error = document.querySelector("#error");
+
+
+        // ==========================================
+        // READ FORM VALUES
+        // ==========================================
+
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            // Input values
+            console.log("Name:", name.value);
+            console.log("Email:", email.value);
+            console.log("Number:", number.value);
+            console.log("Password:", password.value);
+
+            // Select value
+            console.log("City:", city.value);
+
+            // Checkbox
+            console.log("Terms:", terms.checked);
+
+            // Radio
+            const gender = document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+            if (gender) {
+                console.log("Gender:", gender.value);
+            }
+
+            // Textarea
+            console.log("Message:", message.value);
+
+        });
+
+
+        // ==========================================
+        // FORM VALIDATION
+        // ==========================================
+
+        /*
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            error.style.color = "red";
+
+            if (name.value.trim() === "") {
+                error.textContent = "Name is required";
+                return;
+            }
+
+            if (email.value.trim() === "") {
+                error.textContent = "Email is required";
+                return;
+            }
+
+            if (number.value.trim() === "") {
+                error.textContent = "Mobile number is required";
+                return;
+            }
+
+            if (password.value.length < 8) {
+                error.textContent =
+                    "Password must contain at least 8 characters";
+                return;
+            }
+
+            if (city.value === "") {
+                error.textContent = "Please select a city";
+                return;
+            }
+
+            if (!gender) {
+                error.textContent = "Please select gender";
+                return;
+            }
+
+            if (!terms.checked) {
+                error.textContent =
+                    "Please accept the terms and conditions";
+                return;
+            }
+
+            error.textContent = "";
+
+            console.log("Form Valid");
+
+        });
+        */
+
+
+        // ==========================================
+        // FORMDATA
+        // ==========================================
+
+        /*
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            console.log(formData.get("name"));
+            console.log(formData.get("email"));
+            console.log(formData.get("number"));
+            console.log(formData.get("city"));
+            console.log(formData.get("gender"));
+            console.log(formData.get("terms"));
+            console.log(formData.get("message"));
+
+
+            // Get all form data
+
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+
+        });
+        */
+
+    </script>
+
+</body>
+
+</html>

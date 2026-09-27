@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+        let body = document.querySelector("body");
+
+        //creating Elements
+        let heading = document.createElement("h1");
+        let input = document.createElement("input");
+        let add = document.createElement("button");
+        let ulDiv = document.createElement("div");
+        let ul = document.createElement("ul");
+        let clear = document.createElement("button");
+
+
+        //assinging value
+        heading.textContent = "Todo";
+        add.innerText = "+ Add"
+        clear.innerText = "Clear";
+
+        //assiging attribute
+        input.setAttribute("placeholder","Add task")
+
+
+        //storing in body
+        body.append(heading,input,add,clear,ulDiv)
+        ulDiv.append(ul);
+
+        
+
+
+        add.addEventListener("click",()=>{
+
+            //create element
+            let li = document.createElement("li");
+            let deleteBtn = document.createElement("button");
+            let check = document.createElement("input");
+
+
+            // assign value
+            deleteBtn.innerText = "Delete";
+            check.setAttribute("type","checkbox");
+
+            if(input.value !== ""){
+                li.textContent = input.value.trim();
+
+                ul.append(li);
+                li.append(check,deleteBtn)            
+            }
+
+            check.addEventListener("click",()=>{
+                if(li.style.textDecoration != "line-through"){
+                    li.style.textDecoration = "line-through";
+                    deleteBtn.setAttribute("disabled","")
+
+                }else{
+                    li.style.textDecoration = "none";
+                    deleteBtn.removeAttribute("disabled")
+                }
+
+
+            })
+            deleteBtn.addEventListener("click",()=>{
+                li.remove();
+            })
+
+            input.value = "";
+        })
+
+        clear.addEventListener("click",()=>{
+            ul.replaceChildren();
+        })
+
+    </script>
+</body>
+</html>

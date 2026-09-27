@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="profile" 
+        src="https://static.vecteezy.com/system/resources/thumbnails/083/933/835/small/beautiful-and-inspiring-picture-detailing-a-bright-hot-air-balloon-over-river-pure-cozy-perfect-for-creatives-moods-stock-image-free-photo.jpeg" 
+        alt="Profile Image"
+        >
+
+    <button>Submit</button>
+    <script>
+        const profile = document.querySelector("#profile");
+        const btn = document.querySelector('button');
+
+
+        //setAttribute and getAttribute
+        console.log(profile.getAttribute("src"));
+        console.log("Before Alt Attribute : ",profile.getAttribute("alt"));
+
+
+        profile.setAttribute('alt',"Bikas_Img")
+        console.log("After Alt Attribute :",profile.getAttribute("alt"));
+
+        profile.setAttribute('class','img');
+        console.log(profile.getAttribute('class'));
+
+        btn.setAttribute('disabled','')
+
+
+
+        //removeAttribute
+        btn.removeAttribute('disabled');
+
+
+        //hasAttribute
+        console.log(profile.hasAttribute('class'));
+        console.log(btn.hasAttribute('disabled'));
+    </script>
+</body>
+</html>

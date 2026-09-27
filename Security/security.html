@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="comment">
+    <button id="btn">Add Comment</button>
+
+    <div id="comments"></div>
+
+
+    <script>
+        let comment = document.querySelector("#comment");
+        let btn = document.querySelector("#btn");
+        let comments = document.querySelector("#comments");
+
+
+        // using innerHTML to display input value causes security vulnerabilities
+        // btn.addEventListener("click",()=>{
+        //     if(comment.value.trim() !== ""){
+        //         comments.innerHTML=comment.value;
+        //     }
+        // })
+
+
+        // textContent
+        // btn.addEventListener("click",()=>{
+        //     if(comment.value.trim() !== ""){
+        //         comments.textContent = comment.value;
+        //     }
+        // })
+
+
+        //we try to remove <script> from the input but it is bad 
+        //    -most of the hacker can use many different HTML constructs and browser parsing behaviors.
+
+        // btn.addEventListener('click',()=>{
+        //     let name = comment.value;
+        //      name.replace("<script>","");
+        //     comments.innerHTML = `<h2> ${name} </h2>`;
+        // })
+
+
+        // best way to use html in input values
+        btn.addEventListener("click",()=>{
+            let heading = document.createElement("h2");
+            heading.textContent = comment.value;
+            comments.append(heading);
+        })
+    </script>
+</html>

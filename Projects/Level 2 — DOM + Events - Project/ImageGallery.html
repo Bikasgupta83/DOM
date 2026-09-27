@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .container img {
+            object-fit: cover;
+            max-height: 500px;
+        }
+
+        .galleryDiv {
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-content: flex-start;
+        }
+
+        .galleryDiv img {
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .galleryDiv img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let div = document.createElement("div");
+        let galleryDiv = document.createElement("div");
+        let img = document.createElement("img");
+
+        let body = document.body;
+
+        div.classList.add("container");
+        galleryDiv.classList.add("galleryDiv");
+
+        img.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBB4LQTn0vRq4ydPLp-uTj_lEUHOHYWUU18JlCq5KuMw&s=10");
+
+        Object.assign(img.style, {
+            width: "100%",
+            minHeight: "400px",
+            borderRadius: "10px",
+        })
+
+        Object.assign(div.style, {
+            border: "1px solid #000",
+            width: "700px",
+            minHeight: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            borderRadius: "10px",
+        });
+
+        Object.assign(galleryDiv.style, {
+            border: "1px solid #000",
+            width: "700px",
+            minHeight: "auto",
+            borderRadius: "10px",
+        })
+
+        let imgSourceAddress = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHj0r68jZH4eo3fYSF4w2kuacrnLWu69OP644HsnhNkw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwO0wY2zmLQ-AFOwPUfj_GWNfC4AVxIUeIKEocoo0a9g&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ62mZn-g_FDVhNAYwqwPoESQG3SPPdwb3tqGphpeBmbQ&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDj1-cKh0sypdyTdasJ8lQS-ejymuxYpgLQ5HUUG3rnw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSICmPX7HVrXVG2gS_IWLY_caJf42RHkS3GgaBlU_cUAQ&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBB4LQTn0vRq4ydPLp-uTj_lEUHOHYWUU18JlCq5KuMw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0alz_4QfS7tx0wsk8YEeV9r2G4XYdX-ys1p4z7IXC4A&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7JjYbO4WJg6QXPLdvkdg16La0KeBP5cBXq0lyO_Y2iw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXCsW10nAjoXFTDiXZW7Y-fPj9YPUX0aDKyIj-R9lhYw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkC1yk4XSN6RyDMG6hOrS4DMjuToJ39deiuwoPi4KhkA&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9BBZyNl3qWGPOErf-Q3uV6h-7PSHLaTOjF808CVyaqA&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-LZxIzya0JkkMs4MCJN34m5xxSDjAbZhRwtMUVJZb7Q&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsq_CwZBFZlDz9va9-MpXqDju1fMfJ043Iud2udU6Vaw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1zCqTQ0DBShpdkURLGvz4n56mU0urMHRGrsUdoDtRUg&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfZvZn516tRp56xaWTgp5gc30or8vETfEqb4Pex43j6A&s=10",
+        ];
+
+
+        for (let source of imgSourceAddress) {
+            let galleryImg = document.createElement("img");
+
+            galleryImg.setAttribute("src", source);
+
+
+            Object.assign(galleryImg.style, {
+                border: "1px solid #000",
+                width: "100px",
+                height: "150px",
+                alignItems: "center",
+                textAlign: "center",
+                justifyContent: "space-between",
+                gap: "20px",
+                borderRadius: "10px",
+            })
+
+            galleryDiv.append(galleryImg);
+
+            galleryImg.addEventListener("click", () => {
+                let newAttribute = galleryImg.getAttribute("src");
+
+                img.setAttribute("src", newAttribute);
+            })
+        }
+
+
+        body.append(div, galleryDiv);
+        div.append(img);
+
+    </script>
+</body>
+
+</html>

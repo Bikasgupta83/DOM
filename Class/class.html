@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            background-color: tomato;
+            color: #fff;
+            width: 15%;
+            text-align: center;
+            border-radius: 0.5rem;
+            padding: .1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="container card">
+        Hello
+    </div>
+
+    <script>
+        const box = document.querySelector("#box");
+        console.log(box.className);
+
+        // box.className += ' active';
+        console.log(box.className)
+        
+        for(let i=0;i<box.classList.length;i++){
+            console.log(box.classList[i]);
+        }
+
+
+        //classList -> add(), remove(), toggle(), contains(), replace()
+
+        // 1.add() - adds one or more classes.
+        box.classList.add("active","helloClass")
+
+        // 2.remove() - removes a specific class.
+        // box.classList.remove('active')
+        console.log(box.classList);
+
+        //3.contains() - checks whether an element has a particular class.
+        console.log(box.classList.contains('helloClass'));
+
+        //4.toggle() - is one of the most useful methods.
+        //If class exists → remove it
+        //If class doesn't exist → add it
+        box.classList.toggle('active')
+        console.log(box.classList);
+
+        //5.replace() - replaces one class with another.
+        box.classList.replace('helloClass','newClass');
+        console.log(box.classList)
+    </script>
+</body>
+
+</html>

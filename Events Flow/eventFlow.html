@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="parent"><button id="child">Click</button></div>
+
+
+    <ul id="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Mango</li>
+    </ul>
+
+
+    <ul id="closestUl">
+        <li><span>lis1</span></li>
+        <li><span>lis2</span></li>
+        <li><span>lis3</span></li>
+    </ul>
+
+    <script>
+        let parent = document.querySelector('#parent');
+        let child = document.querySelector('#child')
+
+
+        //capturing event flow syntax - // parent -> child
+        // parent.addEventListener(event,handler,true)
+        // parent.addEventListener(event,handler,{capture:true})
+
+
+        // parent.addEventListener('click',()=>{
+        //     console.log("Parent")
+        // },true)
+        // child.addEventListener('click',(e)=>{
+        //     console.log("Child");
+        // },true);
+
+        // parent.addEventListener('click',()=>{console.log("Parent")},true)
+        // parent.addEventListener('click',()=>{console.log("Parent")},{capture:true})
+
+
+
+        // Bubbling event flow  - // Child -> parent
+        // parent.addEventListener('click',()=>{
+        //     console.log("Parent")
+        // })
+        // child.addEventListener('click',(e)=>{
+        //     console.log("Child");
+        // })
+
+
+
+
+        //Event Delegation
+        let items = document.querySelectorAll('li');
+        let list = document.querySelector('#list');
+        let closestUl = document.querySelector("#closestUl");
+
+        // items.forEach((item)=>{
+        //     item.addEventListener('click',()=>{
+        //         console.log(item.textContent);
+        //     })
+        // })
+        
+        list.addEventListener('click',(e)=>{
+            console.log(e.target);
+            console.log(e.currentTarget);
+        })
+
+        // closestUl.addEventListener('click',(e)=>{
+        //     console.log(e.target);
+        //     console.log(e.target.closest("li"));
+        // })
+    </script>
+</body>
+
+</html>

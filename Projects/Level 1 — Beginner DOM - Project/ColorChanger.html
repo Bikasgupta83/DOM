@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button{
+        padding: 10px;
+        border-radius: 20px;
+    }
+</style>
+</head>
+<body>
+    <div>
+        <button>Change Background Color</button>
+    </div>
+
+    <script>
+        
+        let btn = document.querySelector("button");
+
+        let randomColor = () =>{
+            let red = Math.floor(Math.random()*255);
+            let green = Math.floor(Math.random()*255);
+            let blue = Math.floor(Math.random()*255);
+
+            return `rgb(${red},${green},${blue})`;
+        }
+
+        btn.addEventListener("click",()=>{
+            document.body.style.backgroundColor = randomColor();
+        })
+    </script>
+</body>
+</html>

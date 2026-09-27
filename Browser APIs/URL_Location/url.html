@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>url</h1>
+    <script>
+        console.log(location.href)
+
+        // location.href = "https://www.google.com";
+
+        console.log(location.pathname)
+
+        console.log(location.search)
+
+        console.log(location.search !== "null")
+
+        
+
+
+
+
+
+
+        let url = "https://www.amazon.in/Blackt-Electrotech-BT720WP-Protection-Monitoring/dp/B0G5GTHYNV/?_encoding=UTF8&pd_rd_w=Yi3Pl&content-id=amzn1.sym.db6beb15-265d-4a5b-b4db-a1733cf2a27c%3Aamzn1.symc.8e854421-084c-45e4-bb3f-875dbb4ff45a&pf_rd_p=db6beb15-265d-4a5b-b4db-a1733cf2a27c&pf_rd_r=YS9SZW7CFHNGJSAVHG96";
+
+        let urlObj = new URL(url);
+
+        console.log(urlObj.href);
+        console.log(urlObj.origin);
+        console.log(urlObj.protocol);
+        console.log(urlObj.host);
+        console.log(urlObj.hostname);
+        console.log(urlObj.pathname);
+        console.log(urlObj.search);
+
+        let params = new URLSearchParams(urlObj.search);
+        console.log(params.get("id"))
+    </script>
+</body>
+
+</html>
