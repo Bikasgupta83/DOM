@@ -190,163 +190,322 @@
             cursor: pointer;
             font-weight: bold;
         }
+
+
+        .questionHeading {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #1f2937;
+
+            margin: 0 0 20px 0;
+            padding: 18px 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background-color: #eef6ff;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            overflow-wrap: break-word;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
 <body>
     <script>
+        // const questions = [
+        //     {
+        //         question: "What is HTML used for?",
+        //         options: [
+        //             "Styling web pages",
+        //             "Creating the structure of web pages",
+        //             "Database management",
+        //             "Server hosting"
+        //         ],
+        //         answer: "Creating the structure of web pages"
+        //     },
+        //     {
+        //         question: "What is CSS used for?",
+        //         options: [
+        //             "Adding logic",
+        //             "Creating databases",
+        //             "Styling web pages",
+        //             "Creating APIs"
+        //         ],
+        //         answer: "Styling web pages"
+        //     },
+        //     {
+        //         question: "What does DOM stand for?",
+        //         options: [
+        //             "Document Object Model",
+        //             "Data Object Method",
+        //             "Document Oriented Model",
+        //             "Data Object Model"
+        //         ],
+        //         answer: "Document Object Model"
+        //     },
+        //     {
+        //         question: "Which method selects the first element matching a CSS selector?",
+        //         options: [
+        //             "getElement()",
+        //             "querySelector()",
+        //             "selectElement()",
+        //             "findElement()"
+        //         ],
+        //         answer: "querySelector()"
+        //     },
+        //     {
+        //         question: "Which method is used to create a new HTML element?",
+        //         options: [
+        //             "createElement()",
+        //             "newElement()",
+        //             "createHTML()",
+        //             "addElement()"
+        //         ],
+        //         answer: "createElement()"
+        //     },
+        //     {
+        //         question: "Which method adds content at the end of an element?",
+        //         options: [
+        //             "prepend()",
+        //             "before()",
+        //             "append()",
+        //             "replace()"
+        //         ],
+        //         answer: "append()"
+        //     },
+        //     {
+        //         question: "Which method adds content at the beginning of an element?",
+        //         options: [
+        //             "append()",
+        //             "prepend()",
+        //             "before()",
+        //             "after()"
+        //         ],
+        //         answer: "prepend()"
+        //     },
+        //     {
+        //         question: "Which method removes an element from the DOM?",
+        //         options: [
+        //             "delete()",
+        //             "remove()",
+        //             "deleteElement()",
+        //             "removeElement()"
+        //         ],
+        //         answer: "remove()"
+        //     },
+        //     {
+        //         question: "Which method is used to attach an event handler to an element?",
+        //         options: [
+        //             "addEvent()",
+        //             "addEventListener()",
+        //             "eventHandler()",
+        //             "attachEvent()"
+        //         ],
+        //         answer: "addEventListener()"
+        //     },
+        //     {
+        //         question: "Which property gives the element that triggered an event?",
+        //         options: [
+        //             "currentTarget",
+        //             "eventTarget",
+        //             "target",
+        //             "source"
+        //         ],
+        //         answer: "target"
+        //     },
+        //     {
+        //         question: "Which method prevents the default browser behavior?",
+        //         options: [
+        //             "stopPropagation()",
+        //             "preventDefault()",
+        //             "preventEvent()",
+        //             "stopDefault()"
+        //         ],
+        //         answer: "preventDefault()"
+        //     },
+        //     {
+        //         question: "Which event fires continuously while the user types in an input?",
+        //         options: [
+        //             "change",
+        //             "input",
+        //             "keydown",
+        //             "submit"
+        //         ],
+        //         answer: "input"
+        //     },
+        //     {
+        //         question: "Which storage keeps data even after the browser is closed?",
+        //         options: [
+        //             "sessionStorage",
+        //             "localStorage",
+        //             "temporaryStorage",
+        //             "browserStorage"
+        //         ],
+        //         answer: "localStorage"
+        //     },
+        //     {
+        //         question: "Which method converts a JavaScript object into a JSON string?",
+        //         options: [
+        //             "JSON.parse()",
+        //             "JSON.convert()",
+        //             "JSON.stringify()",
+        //             "JSON.object()"
+        //         ],
+        //         answer: "JSON.stringify()"
+        //     },
+        //     {
+        //         question: "Which method converts a JSON string into a JavaScript object?",
+        //         options: [
+        //             "JSON.parse()",
+        //             "JSON.stringify()",
+        //             "JSON.convert()",
+        //             "JSON.object()"
+        //         ],
+        //         answer: "JSON.parse()"
+        //     }
+        // ];
+
+
+
+
+
         const questions = [
             {
-                question: "What is HTML used for?",
+                question: `What will be the output?
+
+Promise.resolve(10)
+    .then(value => {
+        throw new Error("Failed");
+    })
+    .then(value => {
+        console.log("Success");
+    })
+    .catch(error => {
+        console.log(error.message);
+    });`,
                 options: [
-                    "Styling web pages",
-                    "Creating the structure of web pages",
-                    "Database management",
-                    "Server hosting"
+                    "Success",
+                    "undefined",
+                    "Failed",
+                    "Nothing"
                 ],
-                answer: "Creating the structure of web pages"
+                answer: "Failed"
             },
+
             {
-                question: "What is CSS used for?",
+                question: `Why is promisification used?`,
                 options: [
-                    "Adding logic",
-                    "Creating databases",
-                    "Styling web pages",
-                    "Creating APIs"
+                    "To make synchronous functions asynchronous automatically",
+                    "To convert a callback-based API into a Promise-based API",
+                    "To convert Promises into callbacks",
+                    "To avoid using resolve() and reject()"
                 ],
-                answer: "Styling web pages"
+                answer: "To convert a callback-based API into a Promise-based API"
             },
+
             {
-                question: "What does DOM stand for?",
+                question: `What is the output?
+
+Promise.resolve("Hello")
+    .finally(() => {
+        console.log("Finally");
+    })
+    .then(value => {
+        console.log(value);
+    });`,
                 options: [
-                    "Document Object Model",
-                    "Data Object Method",
-                    "Document Oriented Model",
-                    "Data Object Model"
+                    "Hello / Finally",
+                    "Finally / Hello",
+                    "Finally",
+                    "Hello"
                 ],
-                answer: "Document Object Model"
+                answer: "Finally / Hello"
             },
+
             {
-                question: "Which method selects the first element matching a CSS selector?",
+                question: `Which statement about Promise states is correct?`,
                 options: [
-                    "getElement()",
-                    "querySelector()",
-                    "selectElement()",
-                    "findElement()"
+                    "A Promise can move from fulfilled back to pending",
+                    "A Promise can be both fulfilled and rejected",
+                    "A Promise starts as pending and can settle only once",
+                    "Calling reject() always changes a fulfilled Promise to rejected"
                 ],
-                answer: "querySelector()"
+                answer: "A Promise starts as pending and can settle only once"
             },
+
             {
-                question: "Which method is used to create a new HTML element?",
+                question: `What is the output?
+
+const p = new Promise((resolve, reject) => {
+    resolve(10);
+});
+
+p.then(value => {
+    console.log(value);
+    return value * 2;
+})
+.then(value => {
+    console.log(value);
+});`,
                 options: [
-                    "createElement()",
-                    "newElement()",
-                    "createHTML()",
-                    "addElement()"
+                    "10 / 10",
+                    "10 / 20",
+                    "20 / 20",
+                    "10 / undefined"
                 ],
-                answer: "createElement()"
+                answer: "10 / 20"
             },
+
             {
-                question: "Which method adds content at the end of an element?",
+                question: `What is the main purpose of reject() in the Promise constructor?`,
                 options: [
-                    "prepend()",
-                    "before()",
-                    "append()",
-                    "replace()"
+                    "To stop JavaScript execution permanently",
+                    "To change the Promise state to rejected and provide a reason for failure",
+                    "To throw a synchronous error immediately",
+                    "To execute .catch() directly"
                 ],
-                answer: "append()"
+                answer: "To change the Promise state to rejected and provide a reason for failure"
             },
+
             {
-                question: "Which method adds content at the beginning of an element?",
+                question: `What is the output?
+
+Promise.resolve(5)
+    .then(value => {
+        return value * 2;
+    })
+    .then(value => {
+        throw new Error("Error");
+    })
+    .catch(error => {
+        return 100;
+    })
+    .then(value => {
+        console.log(value);
+    });`,
                 options: [
-                    "append()",
-                    "prepend()",
-                    "before()",
-                    "after()"
+                    "5",
+                    "10",
+                    "Error",
+                    "100"
                 ],
-                answer: "prepend()"
+                answer: "100"
             },
+
             {
-                question: "Which method removes an element from the DOM?",
+                question: `What does fetch() return?`,
                 options: [
-                    "delete()",
-                    "remove()",
-                    "deleteElement()",
-                    "removeElement()"
+                    "Response object directly",
+                    "Promise",
+                    "JSON object",
+                    "String"
                 ],
-                answer: "remove()"
-            },
-            {
-                question: "Which method is used to attach an event handler to an element?",
-                options: [
-                    "addEvent()",
-                    "addEventListener()",
-                    "eventHandler()",
-                    "attachEvent()"
-                ],
-                answer: "addEventListener()"
-            },
-            {
-                question: "Which property gives the element that triggered an event?",
-                options: [
-                    "currentTarget",
-                    "eventTarget",
-                    "target",
-                    "source"
-                ],
-                answer: "target"
-            },
-            {
-                question: "Which method prevents the default browser behavior?",
-                options: [
-                    "stopPropagation()",
-                    "preventDefault()",
-                    "preventEvent()",
-                    "stopDefault()"
-                ],
-                answer: "preventDefault()"
-            },
-            {
-                question: "Which event fires continuously while the user types in an input?",
-                options: [
-                    "change",
-                    "input",
-                    "keydown",
-                    "submit"
-                ],
-                answer: "input"
-            },
-            {
-                question: "Which storage keeps data even after the browser is closed?",
-                options: [
-                    "sessionStorage",
-                    "localStorage",
-                    "temporaryStorage",
-                    "browserStorage"
-                ],
-                answer: "localStorage"
-            },
-            {
-                question: "Which method converts a JavaScript object into a JSON string?",
-                options: [
-                    "JSON.parse()",
-                    "JSON.convert()",
-                    "JSON.stringify()",
-                    "JSON.object()"
-                ],
-                answer: "JSON.stringify()"
-            },
-            {
-                question: "Which method converts a JSON string into a JavaScript object?",
-                options: [
-                    "JSON.parse()",
-                    "JSON.stringify()",
-                    "JSON.convert()",
-                    "JSON.object()"
-                ],
-                answer: "JSON.parse()"
+                answer: "Promise"
             }
         ];
+
+
 
         let projectTitle = document.createElement("h1");
         let container = document.createElement("div");
@@ -360,7 +519,7 @@
         projectTitle.innerText = "Multiple-Choice Quiz Application";
 
         // Assign innerText to both buttons
-        prevBtn.innerText = "Previous";
+        prevBtn.innerText = "Prev";
         nextBtn.innerText = "Next";
 
         projectTitle.classList.add("projectTitle");
