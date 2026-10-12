@@ -293,3 +293,86 @@ class Car {
 
 
 
+
+
+
+
+//! Challenge
+
+// / employee class -> empname,empid,salary
+
+// developer class -> write code
+
+// senior developer -> review code
+
+class Employee {
+    #empid;
+    #empname;
+    #salary;
+
+    constructor(empid, empname, salary) {
+        this.#empid = empid;
+        this.#empname = empname;
+        this.#salary = salary;
+    }
+
+    getEmpID(){
+        console.log(this.#empid);
+    }
+
+    getName(){
+        console.log(this.#empname);
+    }
+
+    getSalary(){
+        console.log(this.#salary);
+    }
+
+    setSalary(salary){
+        this.#salary += salary;
+    }
+
+}
+
+class Developer extends Employee {
+    #programmingLanguage;
+
+    constructor(empid, empname, salary, programmingLanguage) {
+        super(empid, empname, salary);
+        this.#programmingLanguage = programmingLanguage;
+    }
+
+    writeCode() {
+        super.getName();
+    }
+
+    getProgrammingLanguage(){
+        console.log(this.#programmingLanguage);
+    }
+
+}
+
+
+
+class SeniorDeveloper extends Developer {
+
+    constructor(empid,empname,salary){
+        super(empid, empname, salary);
+    }
+
+    reviewCode() {
+        super.getName();
+    }
+}
+
+
+const dev1 = new Developer(3, "Abhishek", 30000, ["Java","JS"]);
+dev1.getName();
+dev1.getProgrammingLanguage();
+dev1.getSalary();
+dev1.setSalary(1000);
+dev1.getSalary();
+
+// const seniorDev1 = new SeniorDeveloper(1,"Bikas",20000);
+// seniorDev1.getName();
+// seniorDev1.reviewCode();
